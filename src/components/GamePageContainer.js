@@ -2,8 +2,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { newGame, makeGuess, resetGame } from '../actions/game'
 import { showGuess, wrongGuessCount, wrongGuessLimit, isWinner, gameFinished, randomWord } from '../actions/game-logic'
-
 import AddGuessForm from './AddGuessForm'
+import ResetButton from './ResetButton'
 
 
 class GamePageContainer extends React.PureComponent {
@@ -18,16 +18,12 @@ class GamePageContainer extends React.PureComponent {
     console.log(isWinner(word, guess))
     console.log(gameFinished(word, guess))
 
-    if (wrongGuessLimit(word,guess)) {
-      alert("You lose!")
-    } else if (isWinner(word,guess)){
-      alert("You win!")
-    }
+ 
     
-    if (gameFinished(word, guess)) {
-      this.props.resetGame()
-      this.props.newGame(randomWord())
-    }
+  //   if (gameFinished(word, guess)) {
+  //     this.props.resetGame()
+  //     this.props.newGame(randomWord())
+  //   }
   }
 
 
@@ -36,11 +32,17 @@ class GamePageContainer extends React.PureComponent {
     //console.log(this.props.letterGuess)
     console.log(this.props)
       return (<div>
-        Hello
+        <h1>Lets play hangman....</h1>
         <p>{showGuess(this.props.randomWord, this.props.letterGuess)}</p>
         <AddGuessForm makeGuess={this.props.makeGuess} />
         <p>Wrong guesses: {wrongGuessCount(this.props.randomWord, this.props.letterGuess)}</p>
-        <button>New game</button>
+        <p>{wrongGuessLimit(this.props.randomWord, this.props.letterGuess) ? "You lose!" : ''}</p>
+        <p>{isWinner(this.props.randomWord, this.props.letterGuess) ? "You win!" : ''}</p>
+        <p>{gameFinished(this.props.randomWord, this.props.letterGuess) ? "Start a new game" : ''}</p>
+        <ResetButton 
+          resetGame={this.props.resetGame} 
+          newGame={this.props.newGame} 
+          />
       </div>)
     }
   }
