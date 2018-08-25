@@ -40,8 +40,7 @@ class GamePageContainer extends React.PureComponent {
             />
         </div>
         )
-
-    }
+      }
     }
   }
 
