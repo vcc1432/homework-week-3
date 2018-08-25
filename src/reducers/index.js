@@ -1,8 +1,8 @@
-const reducer = (state = [], action = {}) => {
-    switch (action.type) {
-    default:
-      return state
-    }
-  }
-  
-  export default reducer
+import { combineReducers } from 'redux'
+import randomWord from './random-word'
+import letterGuess from './letter-guess'
+
+export default combineReducers({
+  randomWord,
+  letterGuess
+})
