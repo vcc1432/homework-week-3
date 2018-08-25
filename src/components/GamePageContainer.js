@@ -1,18 +1,40 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { newGame, makeGuess, showGuess, wrongGuessCount } from '../actions/game'
-import { wordList } from '../lib/game'
+import { newGame, makeGuess, showGuess, wrongGuessCount, wrongGuessLimit, isWinner, gameFinished, randomWord } from '../actions/game'
 import AddGuessForm from './AddGuessForm'
 
 
 class GamePageContainer extends React.PureComponent {
   componentDidMount() {
-    const randomWord = () => {
-      return wordList[Math.floor(Math.random() * wordList.length)]
-      }
-      this.props.newGame(randomWord())
-      // this.props.makeGuess("guess") 
+    this.props.newGame(randomWord())
   }
+
+  componentDidUpdate() {
+    const word = this.props.randomWord
+    const guess = this.props.letterGuess
+    console.log("is it working?")
+    console.log(wrongGuessLimit(word, guess))
+    console.log(isWinner(word, guess))
+    console.log(gameFinished(word, guess))
+
+    if (wrongGuessLimit(word,guess)) {
+      alert("You lose!")
+
+    } else if (isWinner(word,guess)){
+      alert("You win!")
+    } else if (gameFinished(word, guess)) {
+      this.props.newGame(randomWord())
+    }
+  }
+
+    componentWillUnmount() {
+      console.log("is it unmounting?")
+      const word = this.props.randomWord
+      const guess = this.props.letterGuess
+      if (gameFinished(word, guess)) {
+        this.props.newGame(randomWord())
+      }
+    }
 
   render() {
     console.log(this.props.randomWord)
@@ -20,8 +42,8 @@ class GamePageContainer extends React.PureComponent {
       return (<div>
         Hello
         <p>{showGuess(this.props.randomWord, this.props.letterGuess)}</p>
-        <p>{wrongGuessCount(this.props.randomWord, this.props.letterGuess)}</p>
         <AddGuessForm makeGuess={this.props.makeGuess} />
+        <p>Wrong guesses: {wrongGuessCount(this.props.randomWord, this.props.letterGuess)}</p>
       </div>)
     }
   }
