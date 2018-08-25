@@ -7,12 +7,13 @@ export default function GamePage(props) {
   
   return (
     <div>
-      <h1>Lets play hangman....</h1>
+      <h1>Let's play hangman....</h1>
       <img src={drawHangman(word, guess)} alt="hangman"/>
       <h1>{showGuess(word, guess)}</h1>
       <h2>Wrong guesses: {wrongGuessCount(word, guess)}</h2>
-      <h2>{wrongGuessLimit(word, guess) ? "You lose!" : ''}</h2>
-      <h2>{isWinner(word, guess) ? "You win!" : ''}</h2>
+      <h2>{wrongGuessLimit(word, guess) ? `You lose! The right word should have been '${word}'.` : ''}</h2>
+      <h2>{isWinner(word, guess) ? `You win! The word was indeed '${word}'.` : ''}</h2>
       <h3>{gameFinished(word, guess) ? "The game is finished. Click the button to start a new game!" : ''}</h3>
-    </div>)
+    </div>
+    )
 }

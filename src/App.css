@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+body {
+  font-family: 'Josefin Sans', cursive;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

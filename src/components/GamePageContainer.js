@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { newGame, makeGuess, resetGame } from '../actions/game'
-import { randomWord } from '../actions/game-logic'
+import { randomWord, gameFinished } from '../actions/game-logic'
 import AddGuessForm from './AddGuessForm'
 import ResetButton from './ResetButton'
 import GamePage from './GamePage'
@@ -13,6 +13,7 @@ class GamePageContainer extends React.PureComponent {
   }
 
   render() {
+    if (!gameFinished(this.props.randomWord, this.props.letterGuess)) {
       return (
       <div>
         <GamePage 
@@ -26,6 +27,21 @@ class GamePageContainer extends React.PureComponent {
           />
       </div>
       )
+    } else {
+      return (
+        <div>
+          <GamePage 
+            randomWord={this.props.randomWord}
+            letterGuess={this.props.letterGuess} 
+          />
+          <ResetButton 
+            resetGame={this.props.resetGame} 
+            newGame={this.props.newGame} 
+            />
+        </div>
+        )
+
+    }
     }
   }
 
