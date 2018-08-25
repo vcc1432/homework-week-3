@@ -36,9 +36,9 @@ class GamePageContainer extends React.PureComponent {
         <p>{showGuess(this.props.randomWord, this.props.letterGuess)}</p>
         <AddGuessForm makeGuess={this.props.makeGuess} />
         <p>Wrong guesses: {wrongGuessCount(this.props.randomWord, this.props.letterGuess)}</p>
-        <p>{wrongGuessLimit(this.props.randomWord, this.props.letterGuess) ? "You lose!" : ''}</p>
-        <p>{isWinner(this.props.randomWord, this.props.letterGuess) ? "You win!" : ''}</p>
-        <p>{gameFinished(this.props.randomWord, this.props.letterGuess) ? "Start a new game" : ''}</p>
+        <h2>{wrongGuessLimit(this.props.randomWord, this.props.letterGuess) ? "You lose!" : ''}</h2>
+        <h2>{isWinner(this.props.randomWord, this.props.letterGuess) ? "You win!" : ''}</h2>
+        <p>{gameFinished(this.props.randomWord, this.props.letterGuess) ? "The game is finished. Click the button to start a new game!" : ''}</p>
         <ResetButton 
           resetGame={this.props.resetGame} 
           newGame={this.props.newGame} 

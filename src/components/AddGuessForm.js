@@ -13,9 +13,12 @@ export default class AddGuessForm extends React.PureComponent {
   handleSubmit = (event) => {
     event.preventDefault()
     event.target.reset()
+    const guess = this.state.guess
 
-    if (this.state.guess) {
-     this.props.makeGuess(this.state.guess)
+    if (guess.length === 1 && guess.match(/[a-z]/i)) {
+     this.props.makeGuess(guess)
+     } else {
+       alert("Please enter a letter!")
      }
   }
 
