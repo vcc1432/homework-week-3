@@ -24,3 +24,16 @@ export const randomWord = () => {
     return (wrongGuessLimit(word, guesses) || isWinner(word, guesses))
   }
   
+  // export const drawHangman = () = {
+  //   switch (action.type) {
+  //     case NEW_GAME:
+  //       return action.payload
+  //     case RESET_GAME:
+  //     return initialState
+  //   default:
+  //     return state
+  //   }
+  // }
+
+
+  
