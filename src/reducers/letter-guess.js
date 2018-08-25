@@ -1,14 +1,13 @@
-import { MAKE_GUESS } from '../actions/game'
-import { RESET } from '../actions/game'
+import { MAKE_GUESS, RESET_GAME } from '../actions/game'
 
+const initialState = []
 
-
-const reducer = (state = [], action = {}) => {
+const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
       case MAKE_GUESS:
-      return [...state, action.payload]
-      case RESET:
-      return [...state, action.payload]
+        return [...state, action.payload]
+      case RESET_GAME:
+        return initialState
     default:
       return state
     }
