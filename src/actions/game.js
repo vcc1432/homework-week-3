@@ -18,4 +18,10 @@ export function makeGuess(guess) {
   
 
 
+  export const showGuess = (word, guesses) => {
+    return word.split('').map(letter => (guesses.indexOf(letter) < 0) ? "_" : letter).join(" ");
+  }
 
+  export const wrongGuessCount = (word, guesses) => {
+    return guesses.filter(guess => word.indexOf(guess) < 0).length
+  }

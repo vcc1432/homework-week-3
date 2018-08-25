@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { newGame, makeGuess } from '../actions/game'
+import { newGame, makeGuess, showGuess, wrongGuessCount } from '../actions/game'
 import { wordList } from '../lib/game'
 import AddGuessForm from './AddGuessForm'
-
 
 
 class GamePageContainer extends React.PureComponent {
@@ -12,18 +11,17 @@ class GamePageContainer extends React.PureComponent {
       return wordList[Math.floor(Math.random() * wordList.length)]
       }
       this.props.newGame(randomWord())
-      this.props.makeGuess("G") 
-      this.props.makeGuess("H") 
-      this.props.makeGuess("E") 
+      // this.props.makeGuess("guess") 
   }
 
-
-
   render() {
-    console.log(this.props)
+    console.log(this.props.randomWord)
+    console.log(this.props.letterGuess)
       return (<div>
         Hello
-        
+        <p>{showGuess(this.props.randomWord, this.props.letterGuess)}</p>
+        <p>{wrongGuessCount(this.props.randomWord, this.props.letterGuess)}</p>
+        <AddGuessForm makeGuess={this.props.makeGuess} />
       </div>)
     }
   }
